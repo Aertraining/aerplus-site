@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AER+ Training | First Aid & Grassroots Club Support</title>
+    <style>
+        :root {
+            --primary: #10b981;
+            --primary-dark: #059669;
+            --primary-light: #ecfdf5;
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --bg-subtle: #f8fafc;
+            --border-color: #e2e8f0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: var(--text-main);
+            background-color: #ffffff;
+            line-height: 1.6;
+        }
+
+        /* Navigation Header */
+        header {
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 16px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-weight: 800;
+            font-size: 1.25rem;
+            color: var(--text-main);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 24px;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-phone {
+            font-weight: 700;
+            color: var(--text-main) !important;
+        }
+
+        /* Hero Section */
+        .hero {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 24px;
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--primary-dark);
+            background: var(--primary-light);
+            padding: 6px 16px;
+            border-radius: 100px;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: 2.75rem;
+            font-weight: 800;
+            color: var(--text-main);
+            max-width: 750px;
+            margin: 0 auto 16px auto;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 32px auto;
+        }
+
+        /* General Section Layout */
+        section {
+            padding: 80px 24px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-header h2 {
+            font-size: 2.25rem;
+            font-weight: 800;
+            color: var(--text-main);
+        }
+
+        /* Amble Suite Cards Grid */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            align-items: stretch;
+        }
+
+        .card {
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 40px 32px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.03);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px -15px rgba(15, 23, 42, 0.08);
+        }
+
+        .card.featured {
+            border: 2px solid var(--primary);
+            box-shadow: 0 20px 40px -15px rgba(16, 185, 129, 0.1);
+        }
+
+        .card.placeholder {
+            background: var(--bg-subtle);
+            border: 1px dashed #cbd5e1;
+        }
+
+        .card-badge {
+            position: absolute;
+            top: 20px;
+            right: 24px;
+            padding: 4px 12px;
+            border-radius: 100px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            background: var(--bg-subtle);
+            color: var(--text-muted);
+        }
+
+        .card.featured .card-badge {
+            background: var(--primary-light);
+            color: var(--primary-dark);
+        }
+
+        .card-tag {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            display: inline-block;
+            margin-bottom: 16px;
+        }
+
+        .card h3 {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-bottom: 16px;
+        }
+
+        .card p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 24px;
+        }
+
+        .features-list {
+            list-style: none;
+            border-top: 1px dashed var(--border-color);
+            padding-top: 20px;
+            margin-bottom: 30px;
+        }
+
+        .features-list li {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .features-list li::before {
+            content: "";
+            display: inline-block;
+            width: 6px;
+            height: 10px;
+            border: solid var(--primary);
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+        }
+
+        /* Buttons */
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 14px 24px;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: background 0.2s, transform 0.2s;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: #ffffff;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+        }
+
+        .btn-outline {
+            background: #ffffff;
+            color: var(--primary-dark);
+            border: 1px solid #a7f3d0;
+        }
+
+        .btn-outline:hover {
+            background: var(--primary-light);
+        }
+
+        /* The Big Plan Section */
+        .big-plan-bg {
+            background-color: var(--bg-subtle);
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+
+        /* Calm Supportive Contact Card Banner */
+        .support-banner {
+            max-width: 900px;
+            margin: 0 auto 60px auto;
+            background: var(--bg-subtle);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 48px 36px;
+            text-align: center;
+        }
+
+        .support-banner h3 {
+            font-size: 1.85rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 12px;
+        }
+
+        .support-banner p {
+            color: var(--text-muted);
+            max-width: 580px;
+            margin: 0 auto 24px auto;
+        }
+
+        .support-note {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 10px;
+            display: block;
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border-color);
+            padding: 40px 24px;
+            background: #ffffff;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .grid-3, .grid-2 {
+                grid-template-columns: 1fr;
+            }
+            .nav-links {
+                display: none;
+            }
+            .hero h1 {
+                font-size: 2.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo">AER<span>+</span> TRAINING</a>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#tools">The Amble Suite</a></li>
+                <li><a href="#bigplan">The Big Plan</a></li>
+                <li><a href="#contact" class="nav-phone">📞 07580 186845</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="about">
+        <span class="hero-badge">First Aid & Grassroots Support in Ipswich</span>
+        <h1>Simple tools built for the realities of grassroots sport.</h1>
+        <p>We are currently developing a transformative product suite for grassroots clubs while delivering certified, dependable first aid and safety standards.</p>
+        <a href="#contact" class="btn btn-primary" style="display: inline-block; width: auto; padding: 14px 32px;">Get In Touch</a>
+    </section>
+
+    <!-- The Amble Suite Section -->
+    <section id="tools">
+        <div class="section-header">
+            <span class="card-tag">Our Products</span>
+            <h2>The Amble Suite</h2>
+        </div>
+
+        <div class="grid-3">
+            <!-- Card 1 -->
+            <div class="card featured">
+                <span class="card-badge">Launching First</span>
+                <div>
+                    <span class="card-tag">Daily Operations</span>
+                    <h3>AmbleClub</h3>
+                    <p>Effortlessly take membership forms and manage volunteer staffing in one stress-free system designed for local clubs.</p>
+                    <ul class="features-list">
+                        <li>Automated volunteer rotas</li>
+                        <li>Smart digital medical & sign-up forms</li>
+                        <li>Secure GDPR member logs</li>
+                    </ul>
+                </div>
+                <a href="#contact" class="btn btn-primary">Join Waiting List</a>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="card">
+                <span class="card-badge">Coming Soon</span>
+                <div>
+                    <span class="card-tag">Event Coordination</span>
+                    <h3>AmbleGala</h3>
+                    <p>Designed for high-profile tournaments and showcases. Coordinate rapid registrations and live digital scoring.</p>
+                    <ul class="features-list">
+                        <li>Rapid athlete registration</li>
+                        <li>Live digital scoring & times</li>
+                        <li>Co-branded discounts</li>
+                    </ul>
+                </div>
+                <a href="#contact" class="btn btn-outline">Join Waiting List</a>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="card placeholder">
+                <div>
+                    <span class="card-tag">Looking Ahead</span>
+                    <h3>Future Tools</h3>
+                    <p>We are actively developing new modules driven entirely by suggestions from local coaches and committee members.</p>
+                    <ul class="features-list">
+                        <li>Driven by community feedback</li>
+                        <li>Designed for ultra-low costs</li>
+                        <li>Bespoke sports features</li>
+                    </ul>
+                </div>
+                <a href="#contact" class="btn btn-outline">Request a Feature</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Big Plan Section -->
+    <div class="big-plan-bg">
+        <section id="bigplan">
+            <div class="section-header">
+                <span class="card-tag">Our Purpose</span>
+                <h2>The Big Plan</h2>
+            </div>
+
+            <div class="grid-2">
+                <div class="card featured">
+                    <span class="card-badge">01</span>
+                    <div>
+                        <span class="card-tag">Regional Growth</span>
+                        <h3>Investing in Lifesaving</h3>
+                        <p>We channel profits directly into building new lifesaving clubs across Suffolk and supporting existing activities throughout the wider East Region.</p>
+                        <ul class="features-list">
+                            <li>Funding new club startups in Suffolk</li>
+                            <li>Sustaining beach and pool initiatives</li>
+                            <li>Expanding regional lifesaving coverage</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <span class="card-badge">02</span>
+                    <div>
+                        <span class="card-tag">Grassroots Impact</span>
+                        <h3>Developing Vital Skills</h3>
+                        <p>Through volunteer teams, clubs deliver RLSS UK programmes to children aged 8+ in pool and open water settings.</p>
+                        <ul class="features-list">
+                            <li>First aid, CPR, and aquatic rescue</li>
+                            <li>Pool and open water training sessions</li>
+                            <li>Opportunities to compete in lifesaving sport</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Calm & Supportive Contact Section -->
+    <section id="contact">
+        <div class="support-banner">
+            <span class="card-tag">We're Here To Help</span>
+            <h3>Take the next step at your own pace.</h3>
+            <p>Whether you have a quick question or want to discuss how we can support your club, our friendly team is always happy to chat.</p>
+            <a href="mailto:info@aerplustraining.co.uk" class="btn btn-primary" style="display: inline-block; width: auto; padding: 14px 32px; margin: 0 auto;">Get in Touch</a>
+            <span class="support-note">No obligation • Quick response guaranteed</span>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div>
+                <p><strong>AER+ Training Limited</strong></p>
+                <p>The Innovation Centre, Nesfield Road, Knowledge Gateway, Colchester, CO4 3ZL</p>
+                <p>Registered in England and Wales: 16836702 | Email: info@aerplustraining.co.uk</p>
+            </div>
+            <ul class="footer-links">
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Complaints Policy</a></li>
+                <li><a href="#">Equality & Diversity</a></li>
+            </ul>
+        </div>
+    </footer>
+
+</body>
+</html>
