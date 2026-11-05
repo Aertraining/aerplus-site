@@ -54,11 +54,10 @@
             text-decoration: none;
         }
 
-        .logo img {
-            height: 44px;
+        .logo svg {
+            height: 38px;
             width: auto;
             display: block;
-            border-radius: 6px;
         }
 
         .nav-links {
@@ -353,8 +352,17 @@
     <!-- Header Navigation -->
     <header>
         <div class="nav-container">
-            <a href="#" class="logo">
-                <img src="logo.png" alt="AER+ Training">
+            <a href="#about" class="logo">
+                <svg viewBox="0 0 200 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Left Dot -->
+                    <circle cx="20" cy="30" r="12" fill="#a8dda8" />
+                    <!-- Middle Raised Dot -->
+                    <circle cx="48" cy="18" r="12" fill="#a8dda8" />
+                    <!-- Right Dot -->
+                    <circle cx="76" cy="30" r="12" fill="#a8dda8" />
+                    <!-- Amble Brand Text -->
+                    <text x="100" y="36" font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="30" fill="#0f172a" letter-spacing="-0.02em">Amble</text>
+                </svg>
             </a>
             <ul class="nav-links">
                 <li><a href="#about">About</a></li>
@@ -490,5 +498,54 @@
         </div>
     </footer>
 
+    <!-- Ultra-Smooth Custom Easing Scroll Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const links = document.querySelectorAll('a[href^="#"]');
+            const header = document.querySelector('header');
+
+            links.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    const targetId = link.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (!targetElement) return;
+
+                    e.preventDefault();
+
+                    const headerOffset = header ? header.offsetHeight : 0;
+                    const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+                    const offsetPosition = elementPosition - headerOffset;
+
+                    const startPosition = window.pageYOffset;
+                    const distance = offsetPosition - startPosition;
+                    const duration = 800; // Animation duration in milliseconds
+                    let startTimestamp = null;
+
+                    // Custom easeInOutCubic curve for smooth scrolling
+                    const easeInOutCubic = (t) => {
+                        return t < 0.5 
+                            ? 4 * t * t * t 
+                            : 1 - Math.pow(-2 * t + 2, 3) / 2;
+                    };
+
+                    const step = (timestamp) => {
+                        if (!startTimestamp) startTimestamp = timestamp;
+                        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                        const easeProgress = easeInOutCubic(progress);
+
+                        window.scrollTo(0, startPosition + (distance * easeProgress));
+
+                        if (progress < 1) {
+                            window.requestAnimationFrame(step);
+                        }
+                    };
+
+                    window.requestAnimationFrame(step);
+                });
+            });
+        });
+    </script>
 </body>
 </html>
