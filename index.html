@@ -7,13 +7,17 @@
     <meta name="description" content="AER+ Training is developing Amble, a simple, low-cost product suite for grassroots sports clubs, starting with membership forms and renewals.">
     <style>
         :root {
-            --primary: #10b981;
-            --primary-dark: #059669;
-            --primary-light: #ecfdf5;
-            --text-main: #0f172a;
-            --text-muted: #475569;
-            --bg-subtle: #f8fafc;
-            --border-color: #e2e8f0;
+            --primary: #B2DFB6;
+            --primary-hover: #9ED3A3;
+            --primary-dark: #1A3A24;
+            --primary-light: #EBF6EC;
+            --sage-dot: #A8DDA8;
+            --text-main: #142419;
+            --text-muted: #425447;
+            --bg-canvas: #F9FAF9;
+            --bg-card: #FFFFFF;
+            --bg-subtle: #F1F5F2;
+            --border-color: #DCE5DE;
         }
 
         * {
@@ -24,16 +28,18 @@
 
         body {
             font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-size: 16px;
             color: var(--text-main);
-            background-color: #ffffff;
-            line-height: 1.6;
+            background-color: var(--bg-canvas);
+            line-height: 1.65;
+            -webkit-font-smoothing: antialiased;
         }
 
         /* Navigation Header */
         header {
             position: sticky;
             top: 0;
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(249, 250, 249, 0.95);
             backdrop-filter: blur(8px);
             border-bottom: 1px solid var(--border-color);
             z-index: 1000;
@@ -51,6 +57,7 @@
         .logo {
             display: inline-flex;
             align-items: center;
+            min-height: 44px;
             text-decoration: none;
         }
 
@@ -68,20 +75,27 @@
         }
 
         .nav-links a {
+            display: inline-flex;
+            align-items: center;
+            min-height: 44px;
+            padding: 0 6px;
             text-decoration: none;
             color: var(--text-muted);
             font-weight: 500;
-            font-size: 0.95rem;
+            font-size: 1rem;
             transition: color 0.2s;
         }
 
         .nav-links a:hover {
-            color: var(--primary);
+            color: var(--text-main);
         }
 
         .nav-phone {
-            font-weight: 700;
+            font-weight: 700 !important;
             color: var(--text-main) !important;
+            background: var(--primary-light);
+            padding: 0 14px !important;
+            border-radius: 10px;
         }
 
         /* Hero Section */
@@ -94,12 +108,13 @@
 
         .hero-badge {
             display: inline-block;
-            font-size: 0.8rem;
+            font-size: 0.875rem;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 0.08em;
+            letter-spacing: 0.06em;
             color: var(--primary-dark);
             background: var(--primary-light);
+            border: 1px solid #CBE7CE;
             padding: 6px 16px;
             border-radius: 100px;
             margin-bottom: 20px;
@@ -109,16 +124,18 @@
             font-size: 2.75rem;
             font-weight: 800;
             color: var(--text-main);
-            max-width: 750px;
-            margin: 0 auto 16px auto;
+            max-width: 760px;
+            margin: 0 auto 18px auto;
             line-height: 1.2;
+            letter-spacing: -0.02em;
         }
 
         .hero p {
-            font-size: 1.1rem;
+            font-size: 1.125rem;
             color: var(--text-muted);
-            max-width: 600px;
+            max-width: 620px;
             margin: 0 auto 32px auto;
+            line-height: 1.65;
         }
 
         /* General Section Layout */
@@ -137,6 +154,7 @@
             font-size: 2.25rem;
             font-weight: 800;
             color: var(--text-main);
+            letter-spacing: -0.015em;
         }
 
         /* Amble Suite Cards Grid */
@@ -148,7 +166,7 @@
         }
 
         .card {
-            background: #ffffff;
+            background: var(--bg-card);
             border: 1px solid var(--border-color);
             border-radius: 24px;
             padding: 40px 32px;
@@ -156,64 +174,65 @@
             flex-direction: column;
             justify-content: space-between;
             position: relative;
-            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.03);
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            box-shadow: 0 10px 30px -10px rgba(20, 36, 25, 0.04);
+            transition: transform 0.35s ease, box-shadow 0.35s ease;
         }
 
         .card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 20px 40px -15px rgba(15, 23, 42, 0.08);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px -15px rgba(20, 36, 25, 0.09);
         }
 
         .card.featured {
             border: 2px solid var(--primary);
-            box-shadow: 0 20px 40px -15px rgba(16, 185, 129, 0.1);
+            box-shadow: 0 20px 40px -15px rgba(178, 223, 182, 0.35);
         }
 
         .card.placeholder {
             background: var(--bg-subtle);
-            border: 1px dashed #cbd5e1;
+            border: 1px dashed #B8C7BC;
         }
 
         .card-badge {
             position: absolute;
             top: 20px;
             right: 24px;
-            padding: 4px 12px;
+            padding: 5px 12px;
             border-radius: 100px;
-            font-size: 0.7rem;
+            font-size: 0.78rem;
             font-weight: 700;
             text-transform: uppercase;
+            letter-spacing: 0.03em;
             background: var(--bg-subtle);
             color: var(--text-muted);
         }
 
         .card.featured .card-badge {
-            background: var(--primary-light);
+            background: var(--primary);
             color: var(--primary-dark);
         }
 
         .card-tag {
-            font-size: 0.75rem;
+            font-size: 0.85rem;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.05em;
             color: var(--text-muted);
             display: inline-block;
-            margin-bottom: 16px;
+            margin-bottom: 14px;
         }
 
         .card h3 {
-            font-size: 1.6rem;
+            font-size: 1.65rem;
             font-weight: 800;
             color: var(--text-main);
-            margin-bottom: 16px;
+            margin-bottom: 14px;
         }
 
         .card p {
-            font-size: 0.95rem;
+            font-size: 1rem;
             color: var(--text-muted);
-            line-height: 1.6;
+            line-height: 1.65;
             margin-bottom: 24px;
         }
 
@@ -225,50 +244,56 @@
         }
 
         .features-list li {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            margin-bottom: 10px;
+            font-size: 0.96rem;
+            color: var(--text-main);
+            margin-bottom: 12px;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
         }
 
         .features-list li::before {
             content: "";
             display: inline-block;
-            width: 6px;
-            height: 10px;
-            border: solid var(--primary);
-            border-width: 0 2px 2px 0;
+            flex-shrink: 0;
+            width: 7px;
+            height: 12px;
+            border: solid var(--primary-dark);
+            border-width: 0 2.5px 2.5px 0;
             transform: rotate(45deg);
+            margin-top: -2px;
         }
 
-        /* Buttons */
+        /* Buttons (High-Contrast Dark Ink on Sage + 44px+ Touch Target) */
         .btn {
-            display: block;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
             width: 100%;
-            padding: 14px 24px;
+            min-height: 48px;
+            padding: 13px 26px;
             text-align: center;
             text-decoration: none;
             border-radius: 12px;
-            font-weight: 600;
-            font-size: 0.95rem;
-            transition: background 0.2s, transform 0.2s;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: background 0.2s, transform 0.2s, border-color 0.2s;
         }
 
         .btn-primary {
             background: var(--primary);
-            color: #ffffff;
+            color: var(--primary-dark);
+            border: 1px solid #9ECEA2;
         }
 
         .btn-primary:hover {
-            background: var(--primary-dark);
+            background: var(--primary-hover);
         }
 
         .btn-outline {
-            background: #ffffff;
+            background: var(--bg-card);
             color: var(--primary-dark);
-            border: 1px solid #a7f3d0;
+            border: 1.5px solid #B6D8B9;
         }
 
         .btn-outline:hover {
@@ -291,46 +316,53 @@
         /* Calm Supportive Contact Card Banner */
         .support-banner {
             max-width: 900px;
-            margin: 0 auto 60px auto;
-            background: var(--bg-subtle);
+            margin: 0 auto 40px auto;
+            background: var(--bg-card);
             border: 1px solid var(--border-color);
-            border-radius: 20px;
-            padding: 48px 36px;
+            border-radius: 24px;
+            padding: 52px 36px;
             text-align: center;
+            box-shadow: 0 10px 30px -10px rgba(20, 36, 25, 0.04);
         }
 
         .support-banner h3 {
-            font-size: 1.85rem;
-            font-weight: 700;
+            font-size: 1.9rem;
+            font-weight: 800;
             color: var(--text-main);
             margin-bottom: 12px;
         }
 
         .support-banner p {
+            font-size: 1.05rem;
             color: var(--text-muted);
             max-width: 580px;
-            margin: 0 auto 24px auto;
+            margin: 0 auto 28px auto;
         }
 
         .support-note {
-            font-size: 0.8rem;
+            font-size: 0.9rem;
             color: var(--text-muted);
-            margin-top: 10px;
+            margin-top: 14px;
             display: block;
         }
 
         /* Footer */
         footer {
             border-top: 1px solid var(--border-color);
-            padding: 40px 24px;
-            background: #ffffff;
+            padding: 44px 24px;
+            background: var(--bg-card);
             color: var(--text-muted);
-            font-size: 0.9rem;
+            font-size: 0.95rem;
+            line-height: 1.7;
         }
 
         .footer-content {
             max-width: 1200px;
             margin: 0 auto;
+        }
+
+        .footer-content strong {
+            color: var(--text-main);
         }
 
         /* Responsive */
@@ -342,7 +374,7 @@
                 display: none;
             }
             .hero h1 {
-                font-size: 2.1rem;
+                font-size: 2.15rem;
             }
         }
     </style>
@@ -355,13 +387,13 @@
             <a href="#about" class="logo">
                 <svg viewBox="0 0 200 50" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <!-- Left Dot -->
-                    <circle cx="20" cy="30" r="12" fill="#a8dda8" />
+                    <circle cx="20" cy="30" r="12" fill="#A8DDA8" />
                     <!-- Middle Raised Dot -->
-                    <circle cx="48" cy="18" r="12" fill="#a8dda8" />
+                    <circle cx="48" cy="18" r="12" fill="#A8DDA8" />
                     <!-- Right Dot -->
-                    <circle cx="76" cy="30" r="12" fill="#a8dda8" />
+                    <circle cx="76" cy="30" r="12" fill="#A8DDA8" />
                     <!-- Amble Brand Text -->
-                    <text x="100" y="36" font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="30" fill="#0f172a" letter-spacing="-0.02em">Amble</text>
+                    <text x="100" y="36" font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="30" fill="#142419" letter-spacing="-0.02em">Amble</text>
                 </svg>
             </a>
             <ul class="nav-links">
@@ -378,7 +410,7 @@
         <span class="hero-badge">Grassroots Club Software, Suffolk</span>
         <h1>Simple tools built for the realities of grassroots sport.</h1>
         <p>We are developing a simple, low-cost product suite for grassroots clubs, starting with membership forms and renewals.</p>
-        <a href="#contact" class="btn btn-primary" style="display: inline-block; width: auto; padding: 14px 32px;">Get In Touch</a>
+        <a href="#contact" class="btn btn-primary" style="width: auto; padding: 14px 34px;">Get In Touch</a>
     </section>
 
     <!-- The Amble Suite Section -->
@@ -414,7 +446,7 @@
                     <p>Designed for high-profile tournaments and showcases. Coordinate rapid registrations and live digital scoring.</p>
                     <ul class="features-list">
                         <li>Rapid athlete registration</li>
-                        <li>Live digital scoring & times</li>
+                        <li>Live digital scoring &amp; times</li>
                         <li>Co-branded discounts</li>
                     </ul>
                 </div>
@@ -484,7 +516,7 @@
             <span class="card-tag">We're Here To Help</span>
             <h3>Take the next step at your own pace.</h3>
             <p>Whether you have a quick question or want to discuss how we can support your club, we're always happy to chat.</p>
-            <a href="mailto:info@aerplustraining.co.uk" class="btn btn-primary" style="display: inline-block; width: auto; padding: 14px 32px; margin: 0 auto;">Get in Touch</a>
+            <a href="mailto:info@aerplustraining.co.uk" class="btn btn-primary" style="width: auto; padding: 14px 34px; margin: 0 auto;">Get in Touch</a>
             <span class="support-note">No obligation • We aim to reply within a few days</span>
         </div>
     </section>
