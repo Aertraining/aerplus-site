@@ -547,7 +547,7 @@
                             <li>Built with data protection in mind</li>
                         </ul>
                     </div>
-                    <a href="#contact" class="btn btn-primary">Register Your Interest</a>
+                    <a href="https://ambleapp.co.uk" class="btn btn-primary">Open AmbleClub</a>
                 </div>
 
                 <div class="card">
@@ -594,9 +594,9 @@
                         <div>
                             <span class="card-tag">Regional Growth</span>
                             <h3>Investing in Lifesaving</h3>
-                            <p>Our aim is to put what we earn back into building new lifesaving clubs across Suffolk and supporting existing activities throughout the wider East Region.</p>
+                            <p>Our aim is to put what we earn back into building new lifesaving clubs and supporting existing activities.</p>
                             <ul class="features-list">
-                                <li>Helping new club startups in Suffolk</li>
+                                <li>Helping new club startups</li>
                                 <li>Supporting beach and pool initiatives</li>
                                 <li>Expanding regional lifesaving coverage</li>
                             </ul>
@@ -642,7 +642,7 @@
             <p>Amble is a club management platform operated by AER+ Training Limited (Registered in England and Wales 16836702) ("Amble", "we", "us" and "our").</p>
             <p>We provide software that helps clubs and member-based organisations manage memberships, attendance, communications, payments, qualifications, safeguarding records and related administrative activities.</p>
             <p>We are registered with the Information Commissioner's Office (ICO) under registration reference ZC153598.</p>
-            <p>If you have any questions about this Privacy Policy or wish to exercise your rights in relation to data for which we are the controller, please contact us at: <strong>Email: hello@ambleapp.co.uk</strong></p>
+            <p>If you have any questions about this Privacy Policy or wish to exercise your rights in relation to data for which we are the controller, please contact us at: <strong>Email: <a href="mailto:hello@ambleapp.co.uk">hello@ambleapp.co.uk</a></strong></p>
 
             <h2>2. Controller and Processor Responsibilities</h2>
             <p>Under UK data protection law, responsibility for personal data depends on whether an organisation acts as a controller or processor.</p>
@@ -691,7 +691,7 @@
             <p>Under UK data protection law, individuals may have rights to access, correct, delete, restrict, object to processing, or receive their data in a portable format. For club data, requests should be directed to the club as controller.</p>
 
             <h2>13. Complaints</h2>
-            <p>If you have concerns, please contact us first at hello@ambleapp.co.uk. You also have the right to complain to the Information Commissioner's Office (ico.org.uk).</p>
+            <p>If you have concerns, please contact us first at <a href="mailto:hello@ambleapp.co.uk">hello@ambleapp.co.uk</a>. You also have the right to complain to the Information Commissioner's Office (ico.org.uk).</p>
 
             <h2>14. Changes to this Policy</h2>
             <p>We may update this Privacy Policy from time to time; the current version will always be published on our website.</p>
@@ -772,5 +772,59 @@
             <p>Amble uses a limited number of cookies and similar technologies necessary for user authentication, session management, and security functions.</p>
         </div>
     </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div>
+                <strong>AER+ Training Limited</strong> (trading as Amble) • Registered in England &amp; Wales: 16836702 • ICO Registration: ZC153598
+            </div>
+            <ul class="footer-links">
+                <li><a href="#privacy" onclick="switchView('privacy'); return false;">Privacy Policy</a></li>
+                <li><a href="#terms" onclick="switchView('terms'); return false;">Terms of Service</a></li>
+                <li><a href="#cookies" onclick="switchView('cookies'); return false;">Cookie Policy</a></li>
+                <li><a href="mailto:hello@ambleapp.co.uk">hello@ambleapp.co.uk</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <script>
+        function switchView(viewName, updateHash = true) {
+            const homeView = document.getElementById('home-view');
+            const subpages = document.querySelectorAll('.subpage');
+
+            if (viewName === 'home') {
+                homeView.style.display = 'block';
+                subpages.forEach(el => el.classList.remove('active'));
+                if (updateHash && window.location.hash && ['#privacy', '#terms', '#cookies'].includes(window.location.hash)) {
+                    history.pushState(null, '', window.location.pathname);
+                }
+            } else {
+                const target = document.getElementById(viewName + '-view');
+                if (target) {
+                    homeView.style.display = 'none';
+                    subpages.forEach(el => el.classList.remove('active'));
+                    target.classList.add('active');
+                    if (updateHash) {
+                        history.pushState(null, '', '#' + viewName);
+                    }
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+            }
+        }
+
+        function handleHashRoute() {
+            const hash = window.location.hash.replace('#', '');
+            if (['privacy', 'terms', 'cookies'].includes(hash)) {
+                switchView(hash, false);
+            } else {
+                switchView('home', false);
+            }
+        }
+
+        window.addEventListener('hashchange', handleHashRoute);
+        window.addEventListener('DOMContentLoaded', handleHashRoute);
+    </script>
+
 </body>
 </html>
