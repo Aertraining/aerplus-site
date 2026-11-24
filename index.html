@@ -594,9 +594,9 @@
                         <div>
                             <span class="card-tag">Regional Growth</span>
                             <h3>Investing in Lifesaving</h3>
-                            <p>Our aim is to put what we earn back into building new lifesaving clubs and supporting existing activities.</p>
+                            <p>Our aim is to put what we earn back into building new lifesaving clubs across Suffolk and supporting existing activities throughout the wider East Region.</p>
                             <ul class="features-list">
-                                <li>Helping new club startups</li>
+                                <li>Helping new club startups in Suffolk</li>
                                 <li>Supporting beach and pool initiatives</li>
                                 <li>Expanding regional lifesaving coverage</li>
                             </ul>
@@ -772,6 +772,7 @@
             <p>Amble uses a limited number of cookies and similar technologies necessary for user authentication, session management, and security functions.</p>
         </div>
     </div>
+
     <!-- Data Processing Agreement Subpage -->
     <div id="dpa-view" class="subpage">
         <a href="#" class="back-btn" onclick="switchView('home'); return false;">← Back to Home</a>
@@ -840,6 +841,7 @@
                 <li><a href="#privacy" onclick="switchView('privacy'); return false;">Privacy Policy</a></li>
                 <li><a href="#terms" onclick="switchView('terms'); return false;">Terms of Service</a></li>
                 <li><a href="#cookies" onclick="switchView('cookies'); return false;">Cookie Policy</a></li>
+                <li><a href="#dpa" onclick="switchView('dpa'); return false;">Data Processing Agreement</a></li>
                 <li><a href="mailto:hello@ambleapp.co.uk">hello@ambleapp.co.uk</a></li>
             </ul>
         </div>
@@ -853,7 +855,7 @@
             if (viewName === 'home') {
                 homeView.style.display = 'block';
                 subpages.forEach(el => el.classList.remove('active'));
-                if (updateHash && window.location.hash && ['#privacy', '#terms', '#cookies'].includes(window.location.hash)) {
+                if (updateHash && window.location.hash && ['#privacy', '#terms', '#cookies', '#dpa'].includes(window.location.hash)) {
                     history.pushState(null, '', window.location.pathname);
                 }
             } else {
@@ -872,7 +874,7 @@
 
         function handleHashRoute() {
             const hash = window.location.hash.replace('#', '');
-            if (['privacy', 'terms', 'cookies'].includes(hash)) {
+            if (['privacy', 'terms', 'cookies', 'dpa'].includes(hash)) {
                 switchView(hash, false);
             } else {
                 switchView('home', false);
